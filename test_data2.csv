@@ -1,4 +1,4 @@
-Id,Date,First_name,Last_name,Email,Gender,ip_address,Company Name,Company Domain,Street address,Country,Car Make,Car Color,Car Model,Age
+Id,Date,First_name,Last_name,Email,Gender,ip_address,Company_Name,Company_Domain,Street_address,Country,Car_Make,Car_Color,Car_Model,Age
 1,12/10/6611,Audi,Reddlesden,areddlesden0@dot.gov,Female,140.207.113.235,Wuckert-Prohaska,wikipedia.org,45 Summer Ridge Alley,China,Mercedes-Benz,Crimson,W123,20
 2,11/21/17854,Yule,Titmus,ytitmus1@microsoft.com,Male,92.0.233.170,Dibbert Inc,blogspot.com,92 Towne Crossing,Albania,Mercedes-Benz,Yellow,CLK-Class,67
 3,10/4/11764,Marlee,Camis,mcamis2@reddit.com,Female,207.97.139.144,Beatty-Bogan,prweb.com,358 Myrtle Court,Indonesia,Buick,Red,Reatta,70
@@ -999,4 +999,3 @@ Id,Date,First_name,Last_name,Email,Gender,ip_address,Company Name,Company Domain
 998,2/6/15106,Rutherford,Parell,rparellrp@virginia.edu,Male,127.133.58.202,Schamberger Group,mapy.cz,69 Melby Hill,China,Mercury,Red,Grand Marquis,50
 999,12/18/18593,Sloan,Reinger,sreingerrq@jimdo.com,Male,27.162.213.82,Tremblay-Ernser,biblegateway.com,92 Burning Wood Point,Philippines,Volkswagen,Green,Jetta III,45
 1000,7/5/6221,Lorry,Gillie,lgillierr@sogou.com,Male,150.217.55.232,Fahey and Sons,technorati.com,032 Arapahoe Park,China,Ford,Crimson,Windstar,50
-

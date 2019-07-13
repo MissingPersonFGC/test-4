@@ -1,10 +1,12 @@
 import React from "react";
 import CSVReader from "react-csv-reader";
+import { Bar } from "react-chartjs-2";
 import "./App.css";
 
 class App extends React.Component {
   state = {
-    values: []
+    values: [],
+    genderData: []
   };
 
   parseCSV = data => {
@@ -34,7 +36,6 @@ class App extends React.Component {
       const index = values.findIndex(
         v => v.ip_address === newValues[0].ip_address
       );
-      console.log(index);
       // If it hasn't, push the CSV into the existing array.
       if (index === -1) {
         const finalValues = values.concat(newValues);
@@ -43,6 +44,33 @@ class App extends React.Component {
         });
       }
     }
+    // Mutate the data into usable information.
+    const genderData = this.state.genderData;
+
+    this.state.values.forEach(value => {
+      const make = value.Car_Make;
+      const gender = value.Gender.toLowerCase();
+      const index = genderData.findIndex(v => v.make === make);
+      if (index === -1) {
+        const newData = {
+          make,
+          [gender]: 1
+        };
+        {
+          gender === "male" ? (newData.female = 0) : (newData.male = 1);
+        }
+        genderData.push(newData);
+      } else {
+        {
+          gender === "male"
+            ? (genderData[index].male = genderData[index].male + 1)
+            : (genderData[index].female = genderData[index].female + 1);
+        }
+      }
+    });
+    this.setState({
+      genderData
+    });
   };
 
   render() {
@@ -53,6 +81,7 @@ class App extends React.Component {
           onFileLoaded={this.parseCSV}
           onError={this.handleError}
         />
+        {this.state.values.length > 0 ? <Bar data={this.state.values} /> : null}
       </div>
     );
   }

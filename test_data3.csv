@@ -1,4 +1,4 @@
-Id,Date,First_name,Last_name,Email,Gender,ip_address,Company Name,Company Domain,Street address,Country,Car Make,Car Color,Car Model,Age
+Id,Date,First_name,Last_name,Email,Gender,ip_address,Company_Name,Company_Domain,Street_address,Country,Car_Make,Car_Color,Car_Model,Age
 1,11/7/13804,Hillery,Klageman,hklageman0@ameblo.jp,Male,135.79.247.149,"Bechtelar, Pacocha and Dicki",cloudflare.com,06 Garrison Lane,Sudan,Mitsubishi,Orange,L300,36
 2,1/9/12225,Alyss,Bulstrode,abulstrode1@hatena.ne.jp,Female,53.126.21.59,Kilback-White,epa.gov,229 Twin Pines Street,Sweden,Buick,Goldenrod,Century,31
 3,5/21/6141,Connie,Brunicke,cbrunicke2@mit.edu,Female,136.239.169.42,"Maggio, Kautzer and Wuckert",howstuffworks.com,4086 International Center,China,Toyota,Turquoise,4Runner,64

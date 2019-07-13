@@ -1,4 +1,4 @@
-Id,Date,First_name,Last_name,Email,Gender,ip_address,Company Name,Company Domain,Street address,Country,Car Make,Car Color,Car Model,Age
+Id,Date,First_name,Last_name,Email,Gender,ip_address,Company_Name,Company_Domain,Street_address,Country,Car_Make,Car_Color,Car_Model,Age
 1,9/29/15346,Aileen,Bernardez,abernardez0@va.gov,Female,11.37.81.33,Mitchell Inc,shutterfly.com,5895 Barby Road,South Korea,Chevrolet,Turquoise,Traverse,46
 2,2/15/3212,Joachim,Abrahmson,jabrahmson1@tripod.com,Male,161.133.106.52,"Haley, Armstrong and Strosin",reddit.com,0 Farmco Junction,France,Chevrolet,Crimson,Bel Air,41
 3,10/21/3618,Ervin,O'Noulane,eonoulane2@fc2.com,Male,56.84.212.94,"Gutkowski, Yost and Toy",bbb.org,9858 East Street,Serbia,MINI,Crimson,Cooper,21
