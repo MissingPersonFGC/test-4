@@ -54,7 +54,7 @@ class App extends React.Component {
     let totalFemaleCars = 0;
     let totalMaleCars = 0;
     const makes = [];
-    const legend = [];
+    const legend = this.state.legend;
 
     this.state.values.forEach(value => {
       const make = value.Car_Make;
@@ -84,6 +84,8 @@ class App extends React.Component {
       totalFemaleCars,
       totalMaleCars
     });
+
+    // Create a colour legend for the chart
     colours.forEach((colour, index) => {
       console.log(colour);
       const item = {
