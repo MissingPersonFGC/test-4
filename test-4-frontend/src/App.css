@@ -31,3 +31,21 @@
     transform: rotate(360deg);
   }
 }
+
+.rv-radial-chart {
+  margin: 0 auto;
+}
+
+.rv-discrete-color-legend.horizontal {
+  display: flex;
+  flex-direction: row;
+  width: 1280px;
+  overflow: scroll;
+  overflow-y: hidden;
+  margin: 0 auto;
+  margin-bottom: 25px;
+}
+
+.rv-discrete-color-legend.horizontal div {
+  padding: 0 10px;
+}

@@ -1,12 +1,16 @@
 import React from "react";
 import CSVReader from "react-csv-reader";
-import { Bar } from "react-chartjs-2";
+import { RadialChart, DiscreteColorLegend } from "react-vis";
 import "./App.css";
+import colours from "./colours";
 
 class App extends React.Component {
   state = {
     values: [],
-    genderData: []
+    genderData: [],
+    totalMaleCars: 0,
+    totalFemaleCars: 0,
+    legend: []
   };
 
   parseCSV = data => {
@@ -47,6 +51,11 @@ class App extends React.Component {
     // Mutate the data into usable information.
     const genderData = this.state.genderData;
 
+    let totalFemaleCars = 0;
+    let totalMaleCars = 0;
+    const makes = [];
+    const legend = [];
+
     this.state.values.forEach(value => {
       const make = value.Car_Make;
       const gender = value.Gender.toLowerCase();
@@ -56,24 +65,65 @@ class App extends React.Component {
           make,
           [gender]: 1
         };
-        {
-          gender === "male" ? (newData.female = 0) : (newData.male = 1);
-        }
+        makes.push(make);
+        gender === "male" ? (newData.female = 0) : (newData.male = 1);
         genderData.push(newData);
       } else {
-        {
-          gender === "male"
-            ? (genderData[index].male = genderData[index].male + 1)
-            : (genderData[index].female = genderData[index].female + 1);
+        if (gender === "male") {
+          genderData[index].male = genderData[index].male + 1;
+          totalMaleCars = totalMaleCars + 1;
+        } else {
+          genderData[index].female = genderData[index].female + 1;
+          totalFemaleCars = totalFemaleCars + 1;
         }
       }
     });
+
     this.setState({
-      genderData
+      genderData,
+      totalFemaleCars,
+      totalMaleCars
+    });
+    colours.forEach((colour, index) => {
+      console.log(colour);
+      const item = {
+        color: colour,
+        title: makes[index]
+      };
+      legend.push(item);
+    });
+    const indeces = [];
+    legend.forEach((item, index) => {
+      if (item.title === undefined) {
+        indeces.push(index);
+      }
+    });
+    legend.splice(indeces[0], indeces.length);
+    console.log(legend);
+    console.log(this.state.genderData);
+    this.setState({
+      legend
     });
   };
 
   render() {
+    const chartDataFemale = [];
+    const chartDataMale = [];
+
+    this.state.genderData.forEach((make, index) => {
+      const femaleData = {
+        angle: (make.female / this.state.totalFemaleCars) * 360,
+        label: make.make,
+        color: colours[index]
+      };
+      const maleData = {
+        angle: (make.male / this.state.totalMaleCars) * 360,
+        label: make.make,
+        color: colours[index]
+      };
+      chartDataFemale.push(femaleData);
+      chartDataMale.push(maleData);
+    });
     return (
       <div className="App">
         <CSVReader
@@ -81,7 +131,60 @@ class App extends React.Component {
           onFileLoaded={this.parseCSV}
           onError={this.handleError}
         />
-        {this.state.values.length > 0 ? <Bar data={this.state.values} /> : null}
+        {this.state.genderData.length > 0 ? (
+          <>
+            <h2>Car Ownership by Gender</h2>
+            <RadialChart
+              data={[
+                {
+                  angle:
+                    (this.state.totalMaleCars /
+                      (this.state.totalMaleCars + this.state.totalFemaleCars)) *
+                    360,
+                  label: "Male",
+                  color: "blue"
+                },
+                {
+                  angle:
+                    (this.state.totalFemaleCars /
+                      (this.state.totalMaleCars + this.state.totalFemaleCars)) *
+                    360,
+                  label: "Female",
+                  color: "pink"
+                }
+              ]}
+              width={1280}
+              height={960}
+              showLabels
+              labelsOverChildren
+              colorType="literal"
+            />
+
+            <h2>Female Car Ownership by Make</h2>
+            <DiscreteColorLegend
+              items={this.state.legend}
+              orientation="horizontal"
+            />
+            <RadialChart
+              data={chartDataFemale}
+              width={1280}
+              height={960}
+              colorType="literal"
+            />
+
+            <h2>Male Car Ownership by Make</h2>
+            <DiscreteColorLegend
+              items={this.state.legend}
+              orientation="horizontal"
+            />
+            <RadialChart
+              data={chartDataMale}
+              width={1280}
+              height={960}
+              colorType="literal"
+            />
+          </>
+        ) : null}
       </div>
     );
   }
