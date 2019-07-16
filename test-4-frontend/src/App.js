@@ -94,6 +94,7 @@ class App extends React.Component {
       };
       legend.push(item);
     });
+    // Remove any unused colours from the legend array before sending it to state, or else it will cause react to return with an error.
     const indeces = [];
     legend.forEach((item, index) => {
       if (item.title === undefined) {
@@ -101,8 +102,6 @@ class App extends React.Component {
       }
     });
     legend.splice(indeces[0], indeces.length);
-    console.log(legend);
-    console.log(this.state.genderData);
     this.setState({
       legend
     });
